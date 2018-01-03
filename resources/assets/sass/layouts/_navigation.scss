@@ -1,0 +1,9 @@
+.navbar {
+  margin-bottom: 0;
+  background-color: #fff;
+  border: none;
+
+  &.transparent {
+    background-color: transparent;
+  }
+}

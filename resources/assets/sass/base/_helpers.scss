@@ -1,0 +1,122 @@
+//----------------------------------------------------------------------------------------------------------------------
+// Typography
+//----------------------------------------------------------------------------------------------------------------------
+.font-light {
+  font-weight: 300;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.line-height-wide {
+  line-height: 1.5rem;
+}
+
+.font-large {
+  font-size: 1.2em;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Typography Color
+//----------------------------------------------------------------------------------------------------------------------
+.font-gray {
+  color: $color-gray !important;
+}
+
+.font-gray-dark {
+  color: $color-gray-dark !important;
+}
+
+.font-white {
+  color: #fff !important;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Background Color
+//----------------------------------------------------------------------------------------------------------------------
+.background-primary {
+  background-color: $color-primary;
+}
+
+.background-primary-light {
+  background-color: $color-primary-light;
+}
+
+.background-white {
+  background-color: #fff;
+}
+
+.background-gradient {
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Margin
+//----------------------------------------------------------------------------------------------------------------------
+.push-15 {
+  margin-bottom: 15px;
+}
+
+.push-15-t {
+  margin-top: 15px;
+}
+
+.push-30 {
+  margin-bottom: 30px;
+}
+
+.push-30-t {
+  margin-top: 30px;
+}
+
+.push-0 {
+  margin-bottom: 0;
+}
+
+.push-overlap {
+  margin-top: -75px;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Padding
+//----------------------------------------------------------------------------------------------------------------------
+.push-inner-15 {
+  padding-bottom: 15px;
+}
+
+.push-inner-15-t {
+  padding-top: 15px;
+}
+
+.push-inner-30 {
+  padding-bottom: 30px;
+}
+
+.push-inner-30-t {
+  padding-top: 30px;
+}
+
+.push-inner-50 {
+  padding-bottom: 50px;
+}
+
+.push-inner-50-t {
+  padding-top: 50px;
+}
+
+.push-inner-100 {
+  padding-bottom: 100px;
+}
+
+.push-inner-100-t {
+  padding-top: 100px;
+}
+
+.rounded-corners {
+  border-radius: 5px;
+}
