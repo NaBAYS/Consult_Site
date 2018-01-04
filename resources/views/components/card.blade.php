@@ -1,5 +1,6 @@
 @php
     $card_classes = ['card'];
+    $tag = 'div';
 
     if (isset($class))
         $card_classes[] = $class;
@@ -7,10 +8,13 @@
     if (!isset($image))
         $image = false;
 
+    if (isset($link))
+        $tag = 'a';
+
     $card_classes = implode(' ', $card_classes);
 @endphp
 
-<div class="{{ $card_classes }}">
+<{{ $tag }} class="{{ $card_classes }}" @isset($link)href="{{ $link }}"@endisset>
     @if(isset($title) || isset($header))
         <div class="card-header">
             @isset($title)
@@ -29,4 +33,4 @@
 
         {{ $slot }}
     </div>
-</div>
+</{{ $tag }}>

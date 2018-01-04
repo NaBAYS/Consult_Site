@@ -4,6 +4,7 @@
   @include shadow(2);
   @include border-radius(1);
   background-color: #fff;
+  display: block;
 
   .card-header {
     padding: ($padding / 2) $padding;
@@ -18,5 +19,16 @@
 
   .card-body {
     padding: $padding;
+  }
+}
+
+a.card {
+  color: #333;
+  text-decoration: none;
+  transition: all .3s ease-out;
+
+  &:hover {
+    @include shadow(3);
+    transform: translateY(-5px);
   }
 }

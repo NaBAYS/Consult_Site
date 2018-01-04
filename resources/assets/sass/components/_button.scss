@@ -7,3 +7,16 @@
   max-width: 100%;
   letter-spacing: 1px;
 }
+
+// Arrow animate on expand
+button[data-toggle="collapse"] {
+  .material-icons {
+    transition: all .3s ease-out;
+  }
+
+  &[aria-expanded="true"] {
+    .material-icons {
+      transform: rotate(180deg);
+    }
+  }
+}
