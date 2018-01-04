@@ -45,55 +45,75 @@
                         </fieldset>
 
                         <div class="collapse-wrapper">
-                            <div class="collapse push-30-t" id="collapseOptions">
+                            @php
+                                $collapse_classes = ['collapse', 'push-30-t'];
+
+                                if (Form::getValueAttribute('tags') || Form::getValueAttribute('categories'))
+                                    $collapse_classes[] = 'in';
+
+                                $collapse_classes = implode(' ', $collapse_classes);
+                            @endphp
+
+                            <div class="{{ $collapse_classes }}" id="collapseOptions">
                                 <fieldset>
                                     <legend class="sr-only">Search Options</legend>
 
-                                    {{ Form::bsSelect('categories', \App\FileCategory::all()->pluck('long_name', 'id')->toArray()) }}
-
-                                    {{ Form::bsSelect('tags', \App\FileTag::all()->pluck('description', 'id')->toArray(), null, ['multi' => true]) }}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            {{ Form::bsSelect('tags', \App\FileTag::all()->pluck('description', 'id')->toArray(), null, ['multi' => true, 'placeholder' => 'Tags']) }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ Form::bsSelect('categories', \App\FileCategory::all()->pluck('long_name', 'id')->toArray()) }}
+                                        </div>
+                                    </div>
                                 </fieldset>
                             </div>
                         </div>
                         {{ Form::close() }}
                     @endcomponent
 
-                    @foreach($files as $file)
-                        @if($loop->iteration % 2 !== 0)
-                            <div class="row">
-                                @endif
+                    @if(count($files) > 0)
+                            @foreach($files as $file)
+                                @if($loop->iteration % 2 !== 0)
+                                    <div class="row">
+                                        @endif
 
-                                <div class="col-md-6">
-                                    @php
-                                        // Card settings
-                                        $card_settings = [
-                                            //
-                                        ];
-                                    @endphp
+                                        <div class="col-md-6">
+                                            @php
+                                                // Card settings
+                                                $card_settings = [
+                                                    //
+                                                ];
+                                            @endphp
 
-                                    @component('components.card', $card_settings)
-                                        <dl class="push-15">
-                                            <dt><strong>{{ $file->name }}</strong></dt>
-                                            <dd>{{ $file->description }}</dd>
-                                        </dl>
+                                            @component('components.card', $card_settings)
+                                                <dl class="push-15">
+                                                    <dt><strong>{{ $file->name }}</strong></dt>
+                                                    <dd>{{ $file->description }}</dd>
+                                                </dl>
 
-                                        <div class="clearfix">
-                                            <span class="label label-info pull-left">{{ $file->category->long_name }}</span>
-                                            @if($file->tags()->count() > 0)
-                                                <div class="pull-right">
-                                                    @foreach($file->tags as $tag)
-                                                        <span class="badge">{{ $tag->description }}</span>
-                                                    @endforeach
+                                                <div class="clearfix">
+                                                    <span class="label label-info pull-left">{{ $file->category->long_name }}</span>
+                                                    @if($file->tags()->count() > 0)
+                                                        <div class="pull-right">
+                                                            @foreach($file->tags as $tag)
+                                                                <span class="badge">{{ $tag->description }}</span>
+                                                            @endforeach
+                                                        </div>
+                                                    @endif
                                                 </div>
-                                            @endif
+                                            @endcomponent
                                         </div>
-                                    @endcomponent
-                                </div>
 
-                                @if($loop->iteration % 2 === 0 || $loop->last)
-                            </div>
-                        @endif
-                    @endforeach
+                                        @if($loop->iteration % 2 === 0 || $loop->last)
+                                    </div>
+                                @endif
+                            @endforeach
+                        @else
+                        <div class="alert alert-info">
+                            No Results Found
+                        </div>
+                    @endif
 
                     {{ $files->links() }}
                 </div>

@@ -37,8 +37,10 @@
 
     // If multi, turn value into array
     if ($multi && $value) {
-        if (!is_string($value)) {
+        if (!is_string($value) && !is_array($value)) {
             $value = $value->pluck('id')->toArray();
+        } else if (is_array($value)) {
+            $value = $value;
         } else {
             $value = [$value];
         }
@@ -59,6 +61,13 @@
             @if($multi && $value)
                 <option value="{{ $option_value }}" @if(in_array($option_value, $value)){{ 'selected' }}@endif>{{ $option }}</option>
             @else
+                @if(is_numeric($option_value))
+                    @php
+                        $value = (int)$value;
+                        $option_value = (int)$option_value;
+                    @endphp
+                @endif
+
                 <option value="{{ $option_value }}" @if($value === $option_value){{ 'selected' }}@endif>{{ $option }}</option>
             @endif
         @endforeach
