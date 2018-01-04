@@ -14,7 +14,7 @@ class DashboardController extends Controller {
 
 		// Authenticated
 		if ( $user ) {
-			$files = File::paginate( 15 );
+			$files = File::paginate( 10 );
 
 			$variables = [
 				'files' => $files
@@ -27,6 +27,25 @@ class DashboardController extends Controller {
 		return view( 'index' );
 	}
 
+	public function search( Request $request ) {
+		$query       = File::query();
+		$text_search = $request->get( 'text_search' );
+
+		if ( $text_search ) {
+			$query->where( 'name', 'LIKE', '%' . $text_search . '%' )
+			      ->orWhere( 'description', 'LIKE', '%' . $text_search . '%' );
+		}
+
+		$variables = [
+			'files' => $query->paginate( 10 )
+		];
+
+		return view( 'authenticated.index', $variables );
+	}
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+	 */
 	public function admin() {
 		$user = \Auth::user();
 

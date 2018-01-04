@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
          $this->call(UsersTableSeed::class);
          $this->call(FileCategoriesTableSeed::class);
          $this->call(TagsTableSeed::class);
+         $this->call(FileUploadSeed::class);
     }
 }

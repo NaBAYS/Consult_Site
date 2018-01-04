@@ -121,7 +121,12 @@ class FileController extends Controller {
 
 			$file->tags()->sync( $request->input( 'tags' ) );
 
-			return redirect()->route( 'admin.file.index' );
+			$message = [
+				'status' => 'success',
+				'message' => 'File successfully updated.'
+			];
+
+			return redirect()->route( 'admin.file.index' )->with('message', $message);
 		} );
 
 	}

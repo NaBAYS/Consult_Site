@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/search', 'DashboardController@search')->name('dashboard.search');
 
 require ('partials/auth.php');
 require ('partials/admin.php');

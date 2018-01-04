@@ -56,7 +56,8 @@ class StoreFile extends FormRequest {
 
 				// Check if file exists
 				if ( ! \Storage::disk( $file->location )->exists( $file->file_path ) ) {
-					$validator->errors()->add( 'file_upload', 'asdf' );
+					if (!$this->file('file_upload'))
+						$validator->errors()->add( 'file_upload', 'Existing file could not be found, you must upload new file to continue.' );
 				}
 			}
 		} );

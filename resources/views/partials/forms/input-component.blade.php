@@ -12,6 +12,7 @@
     // Set type
     $type = 'text';
     $disabled = false;
+    $placeholder = $name_title_case;
 
     foreach ($attributes as $attribute => $val) {
         switch ($attribute) {
@@ -24,6 +25,9 @@
             case 'disabled':
                 $disabled = true;
                 break;
+            case 'placeholder':
+                $placeholder = $val;
+                break;
         }
     }
 @endphp
@@ -32,7 +36,7 @@
 
     <label for="{{ $name }}" class="control-label">{{ $name_title_case }}</label>
 
-    <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" id="{{ $name }}" class="form-control" @if($disabled){{ 'readonly' }}@endif>
+    <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" id="{{ $name }}" class="form-control" @if($disabled){{ 'readonly' }}@endif placeholder="{{ $placeholder }}">
 
 </div>
 

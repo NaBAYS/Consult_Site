@@ -16,8 +16,13 @@
 
                 <div class="form-group">
                     <label>Existing File</label>
-                    <br>
-                    <a href="{{ route('admin.file.view', $file->id) }}" target="_blank" class="btn btn-default">View file</a>
+                    @if(Storage::disk($file->location)->exists($file->file_path))
+                        <br>
+                        <a href="{{ route('admin.file.view', $file->id) }}" target="_blank" class="btn btn-default">View
+                            file</a>
+                    @else
+                        <div class="alert alert-danger">File cannot be found.</div>
+                    @endif
                 </div>
             @endcomponent
         @endisset

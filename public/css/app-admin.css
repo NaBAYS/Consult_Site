@@ -8350,6 +8350,10 @@ button.close {
   }
 }
 
+.row > *[class*=col-]:not(:only-of-type) {
+  margin-bottom: 30px;
+}
+
 .jumbotron {
   background-size: cover;
   background-position: center center;
@@ -8491,6 +8495,14 @@ p {
   background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 
+.push-0 {
+  margin-bottom: 0;
+}
+
+.push-5 {
+  margin-bottom: 5px;
+}
+
 .push-15 {
   margin-bottom: 15px;
 }
@@ -8505,10 +8517,6 @@ p {
 
 .push-30-t {
   margin-top: 30px;
-}
-
-.push-0 {
-  margin-bottom: 0;
 }
 
 .push-overlap {

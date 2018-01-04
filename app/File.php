@@ -23,8 +23,8 @@ class File extends Model
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function file_category() {
-		return $this->belongsTo('App\FileCategory');
+	public function category() {
+		return $this->belongsTo('App\FileCategory', 'file_category_id', 'id');
 	}
 
 	/**
