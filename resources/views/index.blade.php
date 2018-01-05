@@ -6,7 +6,7 @@
 
 @extends('layouts.app', $options)
 
-@section('content')
+@section('full-width')
     <div class="jumbotron text-center push-inner-100-t push-inner-100" style="margin-bottom: 0;">
         <div class="container">
             <div class="row">
@@ -14,7 +14,7 @@
                     <h2 class="h1 font-light font-gray-dark">
                         @if(Auth::check())
                             you are logged in
-                            @else
+                        @else
                             consult lorem ipsum
                         @endif
                     </h2>

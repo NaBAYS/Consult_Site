@@ -11,7 +11,7 @@
 
     {{ method_field('PUT') }}
 
-    <div class="container push-inner-50-t">
+    <div class="push-inner-50-t">
         @include('admin.partials.admin-title', ['title' => 'Edit File Upload', 'btn' => 'Update'])
         @include('admin.partials.forms.file-inputs')
     </div>
