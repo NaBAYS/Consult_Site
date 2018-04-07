@@ -33,4 +33,11 @@ class File extends Model
 	public function tags() {
 		return $this->belongsToMany('App\FileTag');
 	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function comments () {
+		return $this->hasMany('App\FileComment');
+	}
 }

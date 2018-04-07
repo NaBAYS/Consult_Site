@@ -21,6 +21,7 @@
     "dependencies": {
         "browser-sync": "^2.23.2",
         "browser-sync-webpack-plugin": "^1.2.0",
-        "select2": "^4.0.5"
+        "select2": "^4.0.5",
+        "vuex": "^3.0.1"
     }
 }

@@ -1,0 +1,1 @@
+Vue.component('file-comments', require('../components/file-comments.vue'));

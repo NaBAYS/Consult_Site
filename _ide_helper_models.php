@@ -19,14 +19,17 @@ namespace App{
  * @property string $file_type
  * @property int $file_category_id
  * @property string $location
+ * @property int $download_count
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property-read \App\FileCategory $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\FileComment[] $comments
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\FileTag[] $tags
  * @method static \Illuminate\Database\Eloquent\Builder|\App\File whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\File whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\File whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\File whereDownloadCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\File whereFileCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\File whereFilePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\File whereFileType($value)
@@ -102,6 +105,32 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\FileTag whereUpdatedAt($value)
  */
 	class FileTag extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\FileComment
+ *
+ * @property int $id
+ * @property int $file_id
+ * @property int|null $file_comment_id
+ * @property int $user_id
+ * @property string $comment
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\FileComment[] $comments
+ * @property-read \App\File $file
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereFileCommentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereFileId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\FileComment whereUserId($value)
+ */
+	class FileComment extends \Eloquent {}
 }
 
 namespace App\Helpers{

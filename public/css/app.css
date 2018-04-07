@@ -8426,6 +8426,111 @@ a.card:hover {
           transform: translateY(-5px);
 }
 
+.comment-wrapper {
+  width: 100%;
+  padding: 30px 0;
+}
+
+.comment-wrapper .comment-block {
+  display: block;
+}
+
+.comment-wrapper .comment-block .comment-contents {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 15px 80px 15px 30px;
+  display: inline-block;
+  border-radius: 4px;
+  position: relative;
+  -webkit-transition: background-color .3s ease-out;
+  transition: background-color .3s ease-out;
+}
+
+.comment-wrapper .comment-block .comment-contents .comment-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.comment-wrapper .comment-block .comment-contents .vote-block {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  text-align: center;
+  width: 80px;
+}
+
+.comment-wrapper .comment-block .comment-contents .vote-block .material-icons {
+  display: block;
+  background-color: transparent;
+  border: none;
+  font-size: 2em;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  opacity: .6;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.comment-wrapper .comment-block .comment-contents .vote-block .material-icons:first-child {
+  top: 0;
+}
+
+.comment-wrapper .comment-block .comment-contents .vote-block .material-icons:last-child {
+  bottom: 0;
+}
+
+.comment-wrapper .comment-block .comment-contents .vote-block .material-icons:hover {
+  -webkit-transform: translateX(-50%) scale(1.25);
+          transform: translateX(-50%) scale(1.25);
+  opacity: 1;
+}
+
+.comment-wrapper .comment-block .comment-contents .vote-block .vote-number {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.comment-wrapper .comment-block .comment-contents:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.comment-wrapper .comment-block + .comment-block {
+  margin-top: 20px;
+}
+
+.comment-wrapper .comment-block .comment-block {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.comment-wrapper .comment-block .comment-block .comment-contents {
+  border-left: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+#comment-form {
+  display: none;
+  padding: 0 15px;
+  margin: 20px 0 0;
+}
+
 html,
 body {
   font-family: 'Raleway', sans-serif;
@@ -8513,6 +8618,10 @@ p {
 
 .push-5 {
   margin-bottom: 5px;
+}
+
+.push-5-l {
+  margin-left: 5px;
 }
 
 .push-15 {

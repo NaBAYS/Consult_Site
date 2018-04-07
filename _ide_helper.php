@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.28 on 2018-01-04.
+ * Generated for Laravel 5.5.28 on 2018-03-23.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -13281,6 +13281,36 @@ namespace Collective\Html {
  
 }
 
+namespace Laracasts\Utilities\JavaScript { 
+
+    class JavaScriptFacade {
+        
+        /**
+         * Bind the given array of variables to the view.
+         *
+         * @static 
+         */ 
+        public static function put()
+        {
+            return \Laracasts\Utilities\JavaScript\Transformers\Transformer::put();
+        }
+        
+        /**
+         * Translate the array of PHP variables to a JavaScript syntax.
+         *
+         * @param array $variables
+         * @return array 
+         * @static 
+         */ 
+        public static function constructJavaScript($variables)
+        {
+            return \Laracasts\Utilities\JavaScript\Transformers\Transformer::constructJavaScript($variables);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -15397,6 +15427,8 @@ namespace  {
     class Form extends \Collective\Html\FormFacade {}
 
     class Html extends \Collective\Html\HtmlFacade {}
+
+    class JavaScript extends \Laracasts\Utilities\JavaScript\JavaScriptFacade {}
  
 }
 

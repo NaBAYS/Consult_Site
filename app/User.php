@@ -38,4 +38,11 @@ class User extends UserHelper
 	public function role () {
     	return $this->hasOne('App\Role');
     }
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function comments () {
+		return $this->hasMany('App\File_Comment');
+    }
 }

@@ -21,6 +21,7 @@ class CreateFilesTable extends Migration
             $table->string('file_type');
             $table->integer('file_category_id');
             $table->string('location');
+            $table->integer('download_count')->default(0);
 	        $table->timestamps();
 	        $table->softDeletes();
         });

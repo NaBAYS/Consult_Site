@@ -7,7 +7,7 @@
 @extends('layouts.app', $options)
 
 @section('full-width')
-    <div class="jumbotron text-center push-inner-100-t push-inner-100" style="margin-bottom: 0;">
+    <div class="jumbotron text-center push-inner-100-t push-inner-100 push-0">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

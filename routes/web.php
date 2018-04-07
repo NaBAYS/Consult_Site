@@ -12,7 +12,15 @@
 */
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
-Route::get('/search', 'DashboardController@search')->name('dashboard.search');
+
+Route::get('file', 'FileController@index')->name('file');
+Route::get('file/search', 'FileController@search')->name('file.search');
+
+Route::get('file/{file}', 'FileController@show')->name('file.show');
+
+Route::post('file/{file}/{file_comment?}', 'FileController@comment')->name('file.comment');
+
+Route::get('file/{file}/download', 'FileController@download')->name('file.download');
 
 require ('partials/auth.php');
 require ('partials/admin.php');
