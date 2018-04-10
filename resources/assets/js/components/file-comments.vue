@@ -8,14 +8,14 @@
                     </p>
                     <div class="comment-controls">
                         <div>
-                            <strong>{{ comment.user.user_name }}</strong> | {{ comment.created_at }}
+                            <strong>{{ comment.user.user_name }}</strong> | {{ comment.created_at | date }}
                         </div>
-                        <button type="button" class="btn btn-link" @click="leaveComment($event)">Reply</button>
+                        <button type="button" class="btn btn-link" @click="leaveComment($event)" v-if="comment.user_id !== userId">Reply</button>
                     </div>
                     <div class="vote-block">
-                        <button type="button" class="material-icons">keyboard_arrow_up</button>
+                        <button type="button" :class="{'material-icons': true, 'hidden': comment.user_id === userId}" :aria-hidden="comment.user_id === userId">keyboard_arrow_up</button>
                         <span class="vote-number">{{ comment.votes }}</span>
-                        <button type="button" class="material-icons">keyboard_arrow_down</button>
+                        <button type="button" :class="{'material-icons': true, 'hidden': comment.user_id === userId}" :aria-hidden="comment.user_id === userId">keyboard_arrow_down</button>
                     </div>
                 </div>
             </div>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+    import { mapMutations } from 'vuex'
+
     export default {
         data: function () {
             return {
@@ -59,6 +61,11 @@
             file: {
                 get: function () {
                     return this.$store.state.file;
+                }
+            },
+            userId: {
+                get: function () {
+                    return this.$store.state.userId;
                 }
             }
         },
@@ -92,11 +99,26 @@
                     'request': formData,
                 })
                     .then(response => {
-                        console.log(response)
+                        if (response.status === 201) { // Success
+                            this.update({
+                                name: 'comments',
+                                data: response.data
+                            });
+
+                            closeComment();
+                        }
                     })
                     .catch((error)=>{
                     console.log(error.response.data)
                 });
+            },
+            ...mapMutations([
+                'update',
+            ])
+        },
+        filters: {
+            date: function (date) {
+                return moment(date).format('MMMM Do YYYY, h:mm a');
             }
         }
     }
@@ -108,5 +130,9 @@
         wrapper.append(comment);
         comment.hide();
         comment.slideDown();
+    }
+    function closeComment() {
+        let comment = $('#comment-form');
+        comment.slideUp().trigger('reset');
     }
 </script>

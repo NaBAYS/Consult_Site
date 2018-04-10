@@ -47,6 +47,7 @@ class FileController extends Controller
 		JavaScript::put([
 			'comments' => $file->comments->load('user'),
 			'file' => $file,
+			'userId' => Auth::user()->id
 		]);
 
 		return view('files.show', $variables);
@@ -126,8 +127,11 @@ class FileController extends Controller
 				'file_id' => $file->id,
 				'user_id' => Auth::user()->id,
 				'comment' => $comment_body
-			]);
+			])->load('user');
 		});
 	}
 
+	public function fileVote (Request $request, File $file) {
+
+	}
 }

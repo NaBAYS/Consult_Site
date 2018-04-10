@@ -1,6 +1,6 @@
 @php
     $options = [
-        //
+        'moment' => true
     ];
 @endphp
 
@@ -66,6 +66,12 @@
             state: {
                 comments: window.comments,
                 file: window.file,
+                userId: window.userId
+            },
+            mutations: {
+                update (state, payload) {
+                    state[payload.name].push(payload.data);
+                }
             }
         });
 
