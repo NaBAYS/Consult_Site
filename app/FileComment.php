@@ -38,4 +38,11 @@ class FileComment extends Model
 	public function user () {
 		return $this->belongsTo('App\User');
     }
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function votes () {
+		return $this->belongsToMany('App\User');
+    }
 }

@@ -20,6 +20,8 @@ Route::get('file/{file}', 'FileController@show')->name('file.show');
 
 Route::post('file/{file}/{file_comment?}', 'FileController@comment')->name('file.comment');
 
+Route::post('file_comment/{file_comment}/vote', 'FileController@fileVote')->name('file.comment.vote');
+
 Route::get('file/{file}/download', 'FileController@download')->name('file.download');
 
 require ('partials/auth.php');

@@ -131,7 +131,9 @@ class FileController extends Controller
 		});
 	}
 
-	public function fileVote (Request $request, File $file) {
-
+	public function fileVote (Request $request, FileComment $file_comment) {
+		return \DB::transaction(function () use ($request, $file_comment) {
+			return $file_comment->votes()->attach(Auth::user()->id);
+		});
 	}
 }

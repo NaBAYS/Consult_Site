@@ -12,11 +12,11 @@
                         </div>
                         <button type="button" class="btn btn-link" @click="leaveComment($event)" v-if="comment.user_id !== userId">Reply</button>
                     </div>
-                    <div class="vote-block">
-                        <button type="button" :class="{'material-icons': true, 'hidden': comment.user_id === userId}" :aria-hidden="comment.user_id === userId">keyboard_arrow_up</button>
+                    <form :action="'/file_comment/' + comment.id + '/vote/'" method="POST" class="vote-block" v-on:submit.prevent="submitVote($event)">
+                        <button type="submit" :class="{'material-icons': true, 'hidden': comment.user_id === userId}" :aria-hidden="comment.user_id === userId" @click="vote_direction = true">keyboard_arrow_up</button>
                         <span class="vote-number">{{ comment.votes }}</span>
-                        <button type="button" :class="{'material-icons': true, 'hidden': comment.user_id === userId}" :aria-hidden="comment.user_id === userId">keyboard_arrow_down</button>
-                    </div>
+                        <button type="submit" :class="{'material-icons': true, 'hidden': comment.user_id === userId}" :aria-hidden="comment.user_id === userId" @click="vote_direction = false">keyboard_arrow_down</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -49,7 +49,8 @@
     export default {
         data: function () {
             return {
-                comment_id: null
+                comment_id: null,
+                vote_direction: null,
             }
         },
         computed: {
@@ -111,6 +112,23 @@
                     .catch((error)=>{
                     console.log(error.response.data)
                 });
+            },
+            submitVote: function (e) {
+                let voteForm = $('form.vote-block'),
+                    url = voteForm.attr('action');
+
+                axios.post(url, {
+                    'request': this.vote_direction,
+                })
+                    .then(response => {
+                        console.log(response);
+                        // if (response.status === 201) { // Success
+                        //     console.log(response)
+                        // }
+                    })
+                    .catch((error)=>{
+                        console.log(error.response.data)
+                    });
             },
             ...mapMutations([
                 'update',

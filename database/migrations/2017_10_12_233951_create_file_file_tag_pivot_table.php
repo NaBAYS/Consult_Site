@@ -17,6 +17,9 @@ class CreateFileFileTagPivotTable extends Migration
             $table->increments('id');
             $table->integer('file_id')->unsigned();
             $table->integer('file_tag_id')->unsigned();
+
+            $table->foreign('file_id')->references('id')->on('files');
+            $table->foreign('file_tag_id')->references('id')->on('file_tags');
         });
     }
 

@@ -45,4 +45,11 @@ class User extends UserHelper
 	public function comments () {
 		return $this->hasMany('App\File_Comment');
     }
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function votes () {
+		return $this->belongsToMany('App\FileComment');
+    }
 }

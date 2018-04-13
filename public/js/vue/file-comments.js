@@ -1244,7 +1244,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            comment_id: null
+            comment_id: null,
+            vote_direction: null
         };
     },
     computed: {
@@ -1304,6 +1305,21 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
                     closeComment();
                 }
+            }).catch(function (error) {
+                console.log(error.response.data);
+            });
+        },
+        submitVote: function submitVote(e) {
+            var voteForm = $('form.vote-block'),
+                url = voteForm.attr('action');
+
+            axios.post(url, {
+                'request': this.vote_direction
+            }).then(function (response) {
+                console.log(response);
+                // if (response.status === 201) { // Success
+                //     console.log(response)
+                // }
             }).catch(function (error) {
                 console.log(error.response.data);
             });
@@ -1379,41 +1395,67 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "vote-block" }, [
-                _c(
-                  "button",
-                  {
-                    class: {
-                      "material-icons": true,
-                      hidden: comment.user_id === _vm.userId
-                    },
-                    attrs: {
-                      type: "button",
-                      "aria-hidden": comment.user_id === _vm.userId
-                    }
+              _c(
+                "form",
+                {
+                  staticClass: "vote-block",
+                  attrs: {
+                    action: "/file_comment/" + comment.id + "/vote/",
+                    method: "POST"
                   },
-                  [_vm._v("keyboard_arrow_up")]
-                ),
-                _vm._v(" "),
-                _c("span", { staticClass: "vote-number" }, [
-                  _vm._v(_vm._s(comment.votes))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    class: {
-                      "material-icons": true,
-                      hidden: comment.user_id === _vm.userId
-                    },
-                    attrs: {
-                      type: "button",
-                      "aria-hidden": comment.user_id === _vm.userId
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.submitVote($event)
                     }
-                  },
-                  [_vm._v("keyboard_arrow_down")]
-                )
-              ])
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      class: {
+                        "material-icons": true,
+                        hidden: comment.user_id === _vm.userId
+                      },
+                      attrs: {
+                        type: "submit",
+                        "aria-hidden": comment.user_id === _vm.userId
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.vote_direction = true
+                        }
+                      }
+                    },
+                    [_vm._v("keyboard_arrow_up")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "vote-number" }, [
+                    _vm._v(_vm._s(comment.votes))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      class: {
+                        "material-icons": true,
+                        hidden: comment.user_id === _vm.userId
+                      },
+                      attrs: {
+                        type: "submit",
+                        "aria-hidden": comment.user_id === _vm.userId
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.vote_direction = false
+                        }
+                      }
+                    },
+                    [_vm._v("keyboard_arrow_down")]
+                  )
+                ]
+              )
             ])
           ])
         ])
